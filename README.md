@@ -2,7 +2,7 @@
 
 Learnify is a modern, full-stack Learning Management System (LMS) platform where educators can create and manage courses, and students can browse, purchase, and track their learning progress.
 
-[**Live Demo**](#) *(Link to be added)*
+👉 [Live Demo](https://learnify-one-bay.vercel.app)
 
 ## ✨ Features
 
