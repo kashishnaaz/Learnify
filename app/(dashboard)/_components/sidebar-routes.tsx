@@ -6,38 +6,38 @@ import { SidebarItem } from "./sidebar-item";
 
 const guestRoutes = [
     {
-        icon:Layout,
-        label:"Dashboard",
-        href:"/",
+        icon: Layout,
+        label: "Dashboard",
+        href: "/dashboard",
     },
     {
-        icon:Compass,
-        label:"Browser",
-        href:"/search",
+        icon: Compass,
+        label: "Browser",
+        href: "/search",
     },
 ];
 
 const teacherRoutes = [
     {
-        icon:List,
-        label:"Courses",
-        href:"/teacher/courses",
+        icon: List,
+        label: "Courses",
+        href: "/teacher/courses",
     },
     {
-        icon:BarChart,
-        label:"Analytics",
-        href:"/teacher/analytics",
+        icon: BarChart,
+        label: "Analytics",
+        href: "/teacher/analytics",
     },
 ]
 
-export const SidebarRoutes = ()=>{
+export const SidebarRoutes = () => {
     const pathname = usePathname();
     const isTeacherPage = pathname?.includes("/teacher");
-   const routes = isTeacherPage ? teacherRoutes : guestRoutes;
+    const routes = isTeacherPage ? teacherRoutes : guestRoutes;
 
     return (
         <div>
-            {routes.map((route)=>(
+            {routes.map((route) => (
                 <SidebarItem
                     key={route.href}
                     icon={route.icon}

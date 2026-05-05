@@ -71,7 +71,37 @@ Make sure you have Node.js and npm (or yarn/pnpm) installed.
    ```
 
 3. **Set up environment variables:**
-   Create a `.env` file in the root directory and add the necessary API keys and database URLs (Clerk, Mux, UploadThing, Razorpay, and Database URL).
+   Create a `.env` file in the root directory and add the following keys:
+
+   ```env
+   # Authentication (Clerk)
+   NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY=
+   CLERK_SECRET_KEY=
+   NEXT_PUBLIC_CLERK_SIGN_IN_URL=/sign-in
+   NEXT_PUBLIC_CLERK_SIGN_UP_URL=/sign-up
+   NEXT_PUBLIC_CLERK_AFTER_SIGN_IN_URL=/dashboard
+   NEXT_PUBLIC_CLERK_AFTER_SIGN_UP_URL=/dashboard
+
+   # Database (Neon / PostgreSQL)
+   DATABASE_URL=
+   DIRECT_URL=
+
+   # File Uploads (UploadThing)
+   UPLOADTHING_TOKEN=
+
+   # Video Streaming (Mux)
+   MUX_TOKEN_ID=
+   MUX_TOKEN_SECRET=
+
+   # Payments (Razorpay)
+   NEXT_PUBLIC_RAZORPAY_KEY_ID=
+   RAZORPAY_KEY_ID=
+   RAZORPAY_KEY_SECRET=
+   RAZORPAY_WEBHOOK_SECRET=
+
+   # Application URL
+   NEXT_PUBLIC_APP_URL=http://localhost:3000
+   ```
 
 4. **Initialize the database:**
    ```bash
@@ -84,6 +114,13 @@ Make sure you have Node.js and npm (or yarn/pnpm) installed.
    npm run dev
    ```
    Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+
+6. **Webhooks Setup (Optional for local development):**
+   To test Razorpay webhooks locally, you can use ngrok:
+   ```bash
+   ngrok http 3000
+   ```
+   Update the Razorpay dashboard with your ngrok URL (`https://<your-ngrok-url>/api/webhook/razorpay`) and copy the generated Webhook Secret to your `.env` file.
 
 ## 🤝 Contributing
 

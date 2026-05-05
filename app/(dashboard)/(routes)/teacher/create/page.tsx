@@ -4,9 +4,9 @@ import axios from "axios";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import Link from "next/link";
-import {useRouter} from "next/navigation";
+import { useRouter } from "next/navigation";
 
-import{
+import {
     Form,
     FormControl,
     FormDescription,
@@ -22,28 +22,28 @@ import { toast } from "react-hot-toast";
 
 
 const formSchema = z.object({
-    title: z.string().min(1,{
-        message:"Title is required",
+    title: z.string().min(1, {
+        message: "Title is required",
     }),
 });
 
 const CreatePage = () => {
-    const form= useForm<z.infer<typeof formSchema>>({
-        resolver:zodResolver(formSchema),
-        defaultValues:{
-            title:"",
+    const form = useForm<z.infer<typeof formSchema>>({
+        resolver: zodResolver(formSchema),
+        defaultValues: {
+            title: "",
         }
     });
 
-    const {isSubmitting , isValid}= form.formState;
-    const router = useRouter(); 
+    const { isSubmitting, isValid } = form.formState;
+    const router = useRouter();
     const onSubmit = async (values: z.infer<typeof formSchema>) => {
-        try{
+        try {
             const response = await axios.post("/api/courses", values);
-            router.push(`/teacher/courses/${response.data.id}`); 
+            router.push(`/teacher/courses/${response.data.id}`);
             toast.success("Course created");
-        }catch(error){
-            console.log("ERROR:", error); 
+        } catch (error) {
+            console.log("ERROR:", error);
             toast.error("Something went wrong");
         }
     };
@@ -66,7 +66,7 @@ const CreatePage = () => {
                         <FormField
                             control={form.control}
                             name="title"
-                            render={({ field })=>(
+                            render={({ field }) => (
                                 <FormItem>
                                     <FormLabel>
                                         Course Title
@@ -86,7 +86,7 @@ const CreatePage = () => {
                             )}
                         />
                         <div className="flex items-center gap-x-2">
-                            <Link href="/">
+                            <Link href="/teacher/courses">
                                 <Button variant="ghost" type="button">
                                     Cancel
                                 </Button>
@@ -95,7 +95,7 @@ const CreatePage = () => {
                                 Continue
                             </Button>
                         </div>
-                        </form>
+                    </form>
                 </Form>
             </div>
         </div>
